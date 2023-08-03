@@ -20,15 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/resultChildren")
 public class SelectAllChildren extends HttpServlet {
 
-    ChildService childService;
+     private ChildService childService;
 
     public SelectAllChildren() {
-        super();
+         super();
     }
-/*
     public SelectAllChildren(ChildService childService) {
         this.childService = childService;
-    }*/
+    }
 
     private static final long serialVersionUID = 1L;
 

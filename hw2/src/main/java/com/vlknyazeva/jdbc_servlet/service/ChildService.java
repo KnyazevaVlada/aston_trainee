@@ -16,4 +16,14 @@ public class ChildService {
     public List<Child> getAllChildren() throws SQLException {
         return childRepository.getAllChildren();
     }
+
+    public void add(Child child) throws SQLException {
+        childRepository.add(child);
+    }
+
+    public void delete(Child child) throws SQLException {
+        childRepository.delete(child);
+    }
+
+
 }

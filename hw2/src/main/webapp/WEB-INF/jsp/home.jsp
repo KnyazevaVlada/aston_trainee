@@ -20,22 +20,22 @@
     <tr>
         <td>To see all children in sections:</td>
         <td><input type="button" value="Children in sections"
-                   onclick="window.location.href='Sections.jsp'" /></td>
+                   onclick="window.location.href='sections.jsp'" /></td>
     </tr>
     <tr>
         <td>To add new child into the database:</td>
         <td><input type="button" value="Insert data"
-                   onclick="window.location.href='Insert.jsp'" /></td>
+                   onclick="window.location.href='insert.jsp'" /></td>
     </tr>
     <tr>
         <td>To delete details from the database:</td>
         <td><input type="button" value="Delete data"
-                   onclick="window.location.href='Delete.jsp'" /></td>
+                   onclick="window.location.href='delete'" /></td>
     </tr>
     <tr>
         <td>To update details in the database:</td>
         <td><input type="button" value="Select data"
-                   onclick="window.location.href='Update.jsp'" /></td>
+                   onclick="window.location.href='update.jsp'" /></td>
     </tr>
 </table>
 

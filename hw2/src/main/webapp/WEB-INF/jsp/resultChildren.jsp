@@ -15,6 +15,7 @@
         <th>Name</th>
         <th>Surname</th>
     </tr>
+    <jsp:useBean id="childList" scope="request" type="java.util.List"/>
     <c:forEach var="child" items="${childList}">
         <tr>
             <td>${child.id}</td>

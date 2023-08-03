@@ -10,6 +10,8 @@ import java.util.List;
 public class ChildRepository extends AbstractRepository {
 
     public static final String SELECT_ALL_FROM_CHILD = "SELECT * FROM child";
+    public static final String INSERT_INTO_CHILD = "INSERT INTO child VALUES (?, ?)";
+    public static final String DELETE_BY_ID = "DELETE FROM child WHERE id=?";
 
     public static final String COLUMN_LABEL_ID = "id";
     public static final String COLUMN_LABEL_NAME = "name";
@@ -17,7 +19,7 @@ public class ChildRepository extends AbstractRepository {
 
     Connection connection = getConnection();
 
-    //todo: RENAME!!!
+/*    //todo: RENAME!!!
     public void createPreparedStatement(Child child, String sql) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             fillChildStatement(child, preparedStatement);
@@ -29,22 +31,13 @@ public class ChildRepository extends AbstractRepository {
                 connection.close();
             }
         }
-    }
-
-    private void fillChildStatement(Child child, PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setLong(1, child.getId());
-        preparedStatement.setString(2, child.getName());
-        preparedStatement.setString(3, child.getSurname());
-    }
+    }*/
 
     public List<Child> getAllChildren() throws SQLException {
         List<Child> children = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(SELECT_ALL_FROM_CHILD);
             while (resultSet.next()) {
-/*                long id = resultSet.getLong(COLUMN_LABEL_ID);
-                String name = resultSet.getString(COLUMN_LABEL_NAME);
-                String surname = resultSet.getString(COLUMN_LABEL_SURNAME);*/
 /*                Child child = new Child();
                 child.setId(resultSet.getLong(COLUMN_LABEL_ID));
                 child.setName(resultSet.getString(COLUMN_LABEL_NAME));
@@ -68,5 +61,40 @@ public class ChildRepository extends AbstractRepository {
         child.setName(resultSet.getString(COLUMN_LABEL_NAME));
         child.setSurname(resultSet.getString(COLUMN_LABEL_SURNAME));
         return child;
+    }
+
+    public void add(Child child) throws SQLException {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(INSERT_INTO_CHILD);
+
+            preparedStatement.setString(1, child.getName());
+            preparedStatement.setString(2, child.getSurname());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
+    public void delete(Child child) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)) {
+
+            preparedStatement.setLong(1, child.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) connection.close();
+        }
     }
 }
