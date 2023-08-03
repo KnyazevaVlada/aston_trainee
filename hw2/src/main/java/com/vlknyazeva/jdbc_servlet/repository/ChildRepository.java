@@ -12,6 +12,7 @@ public class ChildRepository extends AbstractRepository {
     public static final String SELECT_ALL_FROM_CHILD = "SELECT * FROM child";
     public static final String INSERT_INTO_CHILD = "INSERT INTO child VALUES (?, ?)";
     public static final String DELETE_BY_ID = "DELETE FROM child WHERE id=?";
+    public static final String UPDATE_BY_ID = "UPDATE child SET id=?, name=?, surname=? WHERE id=?";
 
     public static final String COLUMN_LABEL_ID = "id";
     public static final String COLUMN_LABEL_NAME = "name";
@@ -32,6 +33,27 @@ public class ChildRepository extends AbstractRepository {
             }
         }
     }*/
+    public void add(Child child) throws SQLException {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(INSERT_INTO_CHILD);
+
+            preparedStatement.setString(1, child.getName());
+            preparedStatement.setString(2, child.getSurname());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 
     public List<Child> getAllChildren() throws SQLException {
         List<Child> children = new ArrayList<>();
@@ -63,14 +85,12 @@ public class ChildRepository extends AbstractRepository {
         return child;
     }
 
-    public void add(Child child) throws SQLException {
+    public void update(Child child) throws SQLException {
         PreparedStatement preparedStatement = null;
 
         try {
-            preparedStatement = connection.prepareStatement(INSERT_INTO_CHILD);
-
-            preparedStatement.setString(1, child.getName());
-            preparedStatement.setString(2, child.getSurname());
+            preparedStatement = connection.prepareStatement(DELETE_BY_ID);
+            preparedStatement.setLong(1, child.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -83,7 +103,9 @@ public class ChildRepository extends AbstractRepository {
                 connection.close();
             }
         }
+
     }
+
 
     public void delete(Child child) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)) {

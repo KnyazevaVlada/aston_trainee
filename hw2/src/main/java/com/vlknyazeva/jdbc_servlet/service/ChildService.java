@@ -25,5 +25,9 @@ public class ChildService {
         childRepository.delete(child);
     }
 
+    public void update(Child child) throws SQLException {
+        childRepository.update(child);
+    }
+
 
 }
