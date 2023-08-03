@@ -19,6 +19,7 @@ public class Section {
         this.sectionChiefId = sectionChiefId;
     }
 
+
     public long getId() {
         return id;
     }

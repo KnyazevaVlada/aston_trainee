@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class AbstractRepository {
+public class JDBCUtils {
 
     public static final String URL = "jdbc:postgresql://localhost:5432/jdbc_hw";
     public static final String USER = "postgres";

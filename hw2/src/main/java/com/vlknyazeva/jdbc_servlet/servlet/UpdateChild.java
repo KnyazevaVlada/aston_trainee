@@ -4,10 +4,12 @@ import com.vlknyazeva.jdbc_servlet.entity.Child;
 import com.vlknyazeva.jdbc_servlet.service.ChildService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebServlet("/update")
 public class UpdateChild {
 
     private ChildService childService;

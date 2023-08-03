@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChildRepository extends AbstractRepository {
+public class ChildRepository extends JDBCUtils {
 
     public static final String SELECT_ALL_FROM_CHILD = "SELECT * FROM child";
     public static final String INSERT_INTO_CHILD = "INSERT INTO child VALUES (?, ?)";
@@ -47,11 +47,11 @@ public class ChildRepository extends AbstractRepository {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(SELECT_ALL_FROM_CHILD);
             while (resultSet.next()) {
-/*                Child child = new Child();
+                Child child = new Child();
                 child.setId(resultSet.getLong(COLUMN_LABEL_ID));
                 child.setName(resultSet.getString(COLUMN_LABEL_NAME));
-                child.setSurname(resultSet.getString(COLUMN_LABEL_SURNAME));*/
-                children.add(convertChild(resultSet));
+                child.setSurname(resultSet.getString(COLUMN_LABEL_SURNAME));
+ //               children.add(convertChild(resultSet));
 
             }
         } catch (SQLException e) {
