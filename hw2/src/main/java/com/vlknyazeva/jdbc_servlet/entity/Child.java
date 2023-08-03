@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Child {
 
-    private long id;
+    private Long id;
 
     private String name;
 
