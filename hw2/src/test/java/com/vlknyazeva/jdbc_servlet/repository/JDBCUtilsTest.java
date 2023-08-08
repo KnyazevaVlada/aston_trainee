@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class JDBCUtilsTest {
     @Test
@@ -12,7 +13,7 @@ public class JDBCUtilsTest {
         JDBCUtils connection = new JDBCUtils();
 
         try {
-            assertEquals(false, connection.getConnection().isClosed());
+            assertFalse(connection.getConnection().isClosed());
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -23,13 +23,11 @@ public class SelectAllChildren extends HttpServlet {
      private ChildService childService;
 
     public SelectAllChildren() {
-         super();
     }
+
     public SelectAllChildren(ChildService childService) {
         this.childService = childService;
     }
-
-    private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,11 +38,7 @@ public class SelectAllChildren extends HttpServlet {
             request.setAttribute("childList", childList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("resultChildren.jsp");
             dispatcher.forward(request, response);
-//            request.getRequestDispatcher("WEB-INF/jsp/resultChildren.jsp").forward(request, response);
-
-
-            //   response.sendRedirect("Result.jsp?id=" + id + "&name=" + name + "&email=" + email + "&phone=" + ph);
-
+            request.getRequestDispatcher("WEB-INF/jsp/resultChildren.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

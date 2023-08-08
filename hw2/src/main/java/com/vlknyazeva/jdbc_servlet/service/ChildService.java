@@ -28,6 +28,4 @@ public class ChildService {
     public void update(Child child) throws SQLException {
         childRepository.update(child);
     }
-
-
 }

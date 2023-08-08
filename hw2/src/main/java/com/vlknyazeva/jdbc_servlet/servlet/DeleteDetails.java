@@ -28,8 +28,6 @@ public class DeleteDetails extends HttpServlet {
         this.childService = childService;
     }
 
-    private static final long serialVersionUID = 1L;
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -45,29 +43,6 @@ public class DeleteDetails extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-/*        try {
-            Class.forName(DBUtil.DRIVER);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class not found " + e);
-        }
-        try {
-            Connection conn = DriverManager.getConnection(DBUtil.URL, DBUtil.USER, DBUtil.PASSWORD);
-            System.out.println("connection successful");
-            PreparedStatement st = conn.prepareStatement("DELETE FROM child WHERE id=?");
-
-            st.setInt(1, Integer.parseInt(request.getParameter("id")));
-
-            st.executeUpdate();
-
-            st.close();
-            conn.close();
-
-            response.sendRedirect("Success.jsp?msg=delete");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 }
 

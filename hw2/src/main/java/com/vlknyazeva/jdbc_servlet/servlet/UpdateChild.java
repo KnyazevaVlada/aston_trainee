@@ -14,8 +14,6 @@ public class UpdateChild {
 
     private ChildService childService;
 
-    private static final long serialVersionUID = 1L;
-
     public UpdateChild() {
     }
 
@@ -27,14 +25,11 @@ public class UpdateChild {
             throws ServletException, IOException {
 
         try {
-            Long id = Long.valueOf(request.getParameter("id"));
+            long id = Long.parseLong(request.getParameter("id"));
             String name = request.getParameter("name");
             String surname = request.getParameter("surname");
 
-            Child child = new Child();
-            child.setId(id);
-            child.setName(name);
-            child.setSurname(surname);
+            Child child = new Child(id, name, surname);
 
             childService.update(child);
 

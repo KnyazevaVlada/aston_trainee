@@ -51,8 +51,6 @@ public class ChildRepository extends JDBCUtils {
                 child.setId(resultSet.getLong(COLUMN_LABEL_ID));
                 child.setName(resultSet.getString(COLUMN_LABEL_NAME));
                 child.setSurname(resultSet.getString(COLUMN_LABEL_SURNAME));
- //               children.add(convertChild(resultSet));
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,14 +60,6 @@ public class ChildRepository extends JDBCUtils {
             }
         }
         return children;
-    }
-
-    private Child convertChild(ResultSet resultSet) throws SQLException {
-        Child child = new Child();
-        child.setId(resultSet.getLong(COLUMN_LABEL_ID));
-        child.setName(resultSet.getString(COLUMN_LABEL_NAME));
-        child.setSurname(resultSet.getString(COLUMN_LABEL_SURNAME));
-        return child;
     }
 
     public void update(Child child) throws SQLException {
