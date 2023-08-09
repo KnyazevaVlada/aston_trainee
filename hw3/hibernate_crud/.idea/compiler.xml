@@ -6,8 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JDBCApplication" />
+        <module name="homework" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ear" target="1.5" />
+      <module name="ejbs" target="1.5" />
+      <module name="homework" target="17" />
+      <module name="logging" target="1.5" />
+      <module name="primary-source" target="1.5" />
+      <module name="projects" target="1.5" />
+      <module name="servlet" target="1.5" />
+      <module name="servlets" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
