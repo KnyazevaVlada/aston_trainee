@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jdbc_hw:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>jdbc_hw</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="jdbc_hw.war">
+      <element id="artifact" artifact-name="jdbc_hw:war exploded" />
+    </root>
+  </artifact>
+</component>
