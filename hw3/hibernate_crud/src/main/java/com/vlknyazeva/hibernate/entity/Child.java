@@ -3,7 +3,9 @@ package com.vlknyazeva.hibernate.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -31,5 +33,5 @@ public class Child {
             inverseJoinColumns = {@JoinColumn(name = "section_id")}
     )
     @ToString.Exclude
-    private Set<Section> sections = new HashSet<>();
+    private List<Section> sections = new ArrayList<>();
 }

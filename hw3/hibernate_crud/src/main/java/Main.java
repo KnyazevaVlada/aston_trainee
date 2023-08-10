@@ -1,13 +1,12 @@
-import jakarta.persistence.metamodel.EntityType;
+import com.vlknyazeva.hibernate.dao.ChildDAO;
+import com.vlknyazeva.hibernate.dao.SectionDAO;
+import com.vlknyazeva.hibernate.entity.Child;
+import com.vlknyazeva.hibernate.entity.Section;
 import org.hibernate.HibernateException;
-import org.hibernate.Metamodel;
-import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
-
-import java.util.Map;
 
 public class Main {
     private static final SessionFactory ourSessionFactory;
@@ -30,16 +29,31 @@ public class Main {
     public static void main(final String[] args) throws Exception {
         final Session session = getSession();
         try {
-            System.out.println("querying all the managed entities...");
-            final Metamodel metamodel = (Metamodel) session.getSessionFactory().getMetamodel();
-            for (EntityType<?> entityType : metamodel.getEntities()) {
-                final String entityName = entityType.getName();
-                final Query query = session.createQuery("from " + entityName);
-                System.out.println("executing: " + query.getQueryString());
-                for (Object o : query.list()) {
-                    System.out.println("  " + o);
-                }
-            }
+            Configuration configuration = new Configuration().configure();
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+            Transaction tx = session.beginTransaction();
+
+
+            ChildDAO childDao = new ChildDAO(sessionFactory);
+            SectionDAO sectionDao = new SectionDAO(sessionFactory);
+
+            Child child = new Child();
+            child.setName("John");
+            child.setSurname("Malovich");
+
+            Section section1 = new Section();
+            section1.setName("Math");
+
+            Section section2 = new Section();
+            section2.setName("Art");
+
+            child.getSections().add(section1);
+            child.getSections().add(section2);
+
+            childDao.saveOrUpdateChild(child);
+            tx.commit();
+
+            System.out.println(child);
         } finally {
             session.close();
         }
